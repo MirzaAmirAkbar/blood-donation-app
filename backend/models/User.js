@@ -7,7 +7,8 @@ const userSchema = new mongoose.Schema({
   location: { type: String, required: true },
   contact_info: { type: String, required: true },
   email: { type: String, required: true, unique: true },
-  password: { type: String, required: true }
+  password: { type: String, required: true },
+  is_available: { type: Boolean, default: false } // New field added with default value false
 });
 
 const User = mongoose.model("User", userSchema);
