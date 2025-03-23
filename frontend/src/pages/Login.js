@@ -1,9 +1,11 @@
 import { useState } from "react";
+import { useNavigate, Link } from "react-router-dom"; // Import useNavigate
 import styles from "./Login.module.css";
-import { Link } from "react-router-dom"; // Import Link from react-router-dom
+
 
 function Login() {
   const [formData, setFormData] = useState({ email: "", password: "" });
+  const navigate = useNavigate(); // ✅ Initialize navigate
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -20,7 +22,9 @@ function Login() {
 
     if (response.ok) {
       localStorage.setItem("token", data.token);
+      localStorage.setItem("email", formData.email); // Store email
       alert("Login successful!");
+      navigate("/dashboard"); // Redirect to Dashboard
     } else {
       alert(data.msg);
     }

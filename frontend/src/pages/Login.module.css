@@ -1,11 +1,12 @@
 div {
-    width: 300px;
+    width: 300%px;
     margin: 100px auto;
     padding: 20px;
     background: #f9f9f9;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
+    background:blue;
   }
   
   h2 {
@@ -19,7 +20,7 @@ div {
   }
   
   input {
-    width: 100%;
+    width: 50%;
     padding: 10px;
     margin: 8px 0;
     border: 1px solid #ccc;
