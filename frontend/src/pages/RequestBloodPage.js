@@ -28,7 +28,7 @@ const RequestBlood = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:5000/api/auth/blood-request', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/auth/blood-request`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

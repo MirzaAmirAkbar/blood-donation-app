@@ -12,7 +12,7 @@ const MyRequests = () => {
 
   const fetchRequests = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/api/blood-request/blood-requests-email?email=${storedUser.email}`);
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/blood-request/blood-requests-email?email=${storedUser.email}`);
       const data = await response.json();
       setRequests(data);
     } catch (error) {
@@ -27,7 +27,7 @@ const MyRequests = () => {
   const handleDelete = async (id) => {
     if (!window.confirm('Are you sure you want to delete this request?')) return;
     try {
-      const response = await fetch(`http://localhost:5000/api/blood-request/blood-request-delete/${id}`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/blood-request/blood-request-delete/${id}`, {
         method: 'DELETE',
       });
       const data = await response.json();
@@ -44,7 +44,7 @@ const MyRequests = () => {
 
   const handleUpdate = async (id) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/blood-request/blood-request-update/${id}`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/blood-request/blood-request-update/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

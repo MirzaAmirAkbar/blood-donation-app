@@ -17,7 +17,7 @@ const RegisterPage = () => {
     e.preventDefault();
 
     // Send register request to backend
-    fetch('http://localhost:5000/api/auth/register', {
+    fetch(`${process.env.REACT_APP_API_URL}/api/auth/register`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

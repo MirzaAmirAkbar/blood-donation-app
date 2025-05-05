@@ -12,7 +12,7 @@ const ViewBloodRequests = () => {
   useEffect(() => {
     const fetchBloodRequests = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/blood-request/blood-requests');
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/blood-request/blood-requests`);
         const data = await response.json();
         setBloodRequests(data);
       } catch (error) {
@@ -41,7 +41,7 @@ const ViewBloodRequests = () => {
   
     try {
       // 1. Create the appointment
-      const appointmentResponse = await fetch('http://localhost:5000/api/appointment/add', {
+      const appointmentResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/appointment/add`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -64,7 +64,7 @@ const ViewBloodRequests = () => {
       }
       /*
       // 2. Update blood request status
-      const confirmResponse = await fetch(`http://localhost:5000/api/blood-request/confirm/${requestId}`, {
+      const confirmResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/blood-request/confirm/${requestId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
