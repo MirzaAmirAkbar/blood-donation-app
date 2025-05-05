@@ -1,0 +1,194 @@
+.view-blood-requests-container {
+    background-color: #fff0f0;
+    padding: 20px;
+    width: 80%;
+    margin: auto;
+    border-radius: 10px;
+  }
+  
+  h2 {
+    text-align: center;
+    color: #8b0000;
+  }.view-blood-requests-container {
+    background-color: #fff0f0;
+    padding: 30px;
+    max-width: 1000px;
+    margin: 40px auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(139, 0, 0, 0.2);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  h2 {
+    text-align: center;
+    color: #8b0000;
+    margin-bottom: 30px;
+  }
+  
+  button {
+    padding: 10px 16px;
+    background-color: #8b0000;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #a52a2a;
+  }
+  
+  .back-button {
+    display: block;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  .requests-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .request-card {
+    background-color: #fffafa;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-left: 6px solid #8b0000;
+    border-radius: 10px;
+    transition: box-shadow 0.2s;
+  }
+  
+  .request-card:hover {
+    box-shadow: 0 4px 8px rgba(139, 0, 0, 0.1);
+  }
+  
+  .request-card h3 {
+    color: #8b0000;
+    margin-bottom: 10px;
+  }
+  
+  .request-card p {
+    margin: 6px 0;
+  }
+  
+  .status-pending {
+    color: orange;
+    font-weight: bold;
+  }
+  
+  .status-confirmed {
+    color: green;
+    font-weight: bold;
+  }
+  
+  .status-fulfilled {
+    color: blue;
+    font-weight: bold;
+  }
+  
+  .status-rejected {
+    color: red;
+    font-weight: bold;
+  }
+  
+  label[for="appointment-time"] {
+    font-weight: bold;
+    color: #8b0000;
+    margin-top: 10px;
+    display: block;
+  }
+  
+  input[type="datetime-local"] {
+    margin-top: 6px;
+    padding: 10px;
+    width: 100%; /* ❌ Problematic */
+    box-sizing: border-box; /* ✅ Important fix */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  
+  .confirm-button {
+    margin-top: 10px;
+    background-color: #8b0000;
+    padding: 10px 16px;
+    width: 100%;
+    font-size: 15px;
+  }
+  
+  .confirm-button:hover {
+    background-color: #a52a2a;
+  }
+  
+  
+  button {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #8b0000;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #a52a2a;
+  }
+  
+  .back-button {
+    margin-top: 20px;
+    width: 100%;
+  }
+  
+  .requests-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* ✅ Add this line */
+    gap: 20px;
+  }
+  
+  
+  .request-card {
+    background-color: #fff;
+    padding: 15px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+  }
+  
+  .request-card h3 {
+    color: #8b0000;
+  }
+  
+  .status-pending {
+    color: orange;
+  }
+  
+  .status-confirmed {
+    color: green;
+  }
+  
+  .status-fulfilled {
+    color: blue;
+  }
+  
+  .status-rejected {
+    color: red;
+  }
+  
+  .confirm-button {
+    background-color: #8b0000;
+    color: white;
+    padding: 10px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+  }
+  
+  .confirm-button:hover {
+    background-color: #a52a2a;
+  }
+  

@@ -1,0 +1,82 @@
+/* frontend/styles/LoginPage.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(to right, #fff5f5, #ffeaea);
+}
+
+.login-page {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-card {
+  background-color: #fff;
+  padding: 40px 35px;
+  border-radius: 12px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+}
+
+.login-card h1 {
+  font-size: 32px;
+  color: #a80000;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 32px;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-align: left;
+}
+
+.login-form label {
+  font-weight: 500;
+  color: #333;
+}
+
+.login-form input {
+  padding: 12px;
+  font-size: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  transition: border 0.2s ease;
+}
+
+.login-form input:focus {
+  border-color: #a80000;
+  outline: none;
+}
+
+.login-button {
+  background-color: #a80000;
+  color: #fff;
+  padding: 14px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.25s ease-in-out;
+}
+
+.login-button:hover {
+  background-color: #fff;
+  color: #a80000;
+  border: 1.5px solid #a80000;
+  box-shadow: 0 8px 20px rgba(168, 0, 0, 0.2);
+}

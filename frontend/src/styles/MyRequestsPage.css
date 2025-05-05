@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(to right, #fff5f5, #ffeaea);
+}
+
+.my-requests-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 30px;
+}
+
+.my-requests-card {
+  background-color: #fff;
+  padding: 40px 35px;
+  border-radius: 12px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+  max-width: 600px;
+  width: 100%;
+}
+
+.my-requests-card h1 {
+  text-align: center;
+  color: #a80000;
+  font-size: 28px;
+  margin-bottom: 24px;
+}
+
+.request-entry {
+  border: 1px solid #eee;
+  padding: 16px;
+  margin-bottom: 16px;
+  border-radius: 10px;
+  background-color: #fdfdfd;
+}
+
+.request-entry p {
+  margin: 6px 0;
+  color: #333;
+}
+
+.request-entry label {
+  display: block;
+  margin-top: 10px;
+  font-weight: 600;
+  color: #444;
+}
+
+.request-entry input, .request-entry select {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-top: 5px;
+}
+
+.button-group {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.btn {
+  padding: 12px 18px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn.primary {
+  background-color: #a80000;
+  color: #fff;
+}
+
+.btn.primary:hover {
+  background-color: #fff;
+  color: #a80000;
+  border: 1.5px solid #a80000;
+  box-shadow: 0 8px 20px rgba(168, 0, 0, 0.2);
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+
+.back-button {
+  margin-top: 30px;
+  width: 100%;
+}

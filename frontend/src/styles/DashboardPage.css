@@ -1,0 +1,63 @@
+/* frontend/styles/DashboardPage.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(to right, #fff5f5, #ffeaea);
+}
+
+.dashboard-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.dashboard-card {
+  background-color: #fff;
+  padding: 50px 40px;
+  border-radius: 12px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+  max-width: 500px;
+  width: 100%;
+  text-align: center;
+}
+
+.dashboard-card h1 {
+  color: #a80000;
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+
+.dashboard-subtitle {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 32px;
+}
+
+.dashboard-options {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.dashboard-options button {
+  background-color: #a80000;
+  color: #fff;
+  border: none;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.dashboard-options button:hover {
+  background-color: #fff;
+  color: #a80000;
+  border: 1.5px solid #a80000;
+  box-shadow: 0 8px 20px rgba(168, 0, 0, 0.2);
+}

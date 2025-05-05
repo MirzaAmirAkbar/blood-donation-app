@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(to right, #fff5f5, #ffeaea);
+}
+
+.request-blood-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.request-card {
+  background-color: #fff;
+  padding: 40px 35px;
+  border-radius: 12px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+  max-width: 500px;
+  width: 100%;
+  text-align: left;
+}
+
+.request-card h1 {
+  text-align: center;
+  color: #a80000;
+  font-size: 28px;
+  margin-bottom: 24px;
+}
+
+.form-group {
+  margin-bottom: 18px;
+}
+
+label {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 6px;
+  color: #444;
+}
+
+input, select {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 14px;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  transition: border 0.3s;
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: #a80000;
+}
+
+.plain-text {
+  font-size: 16px;
+  color: #333;
+  margin-top: 6px;
+}
+
+.button-group {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 30px;
+}
+
+.btn {
+  padding: 14px 24px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn.primary {
+  background-color: #a80000;
+  color: #fff;
+}
+
+.btn.primary:hover {
+  background-color: #fff;
+  color: #a80000;
+  border: 1.5px solid #a80000;
+  box-shadow: 0 8px 20px rgba(168, 0, 0, 0.2);
+}
