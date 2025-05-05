@@ -16,6 +16,16 @@ const PORT = process.env.PORT;
 app.use(cors());
 app.use(bodyParser.json());
 
+// Allow CORS for specific domains (adjust for your needs)
+app.use(cors({
+  origin: [
+    'http://localhost:3000', // For local development
+    //'https://your-deployed-frontend.vercel.app' // Replace with your frontend's Vercel URL
+  ],
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // You can specify the HTTP methods you want to allow
+  //credentials: true // If you are sending cookies or authentication headers
+}));
+
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
