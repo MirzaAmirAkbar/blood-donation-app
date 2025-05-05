@@ -97,22 +97,23 @@ const BloodRequest = require('../models/BloodRequest'); // Adjust path as needed
 
 // API endpoint to create a new blood request
 router.post('/blood-request', async (req, res) => {
-  const { blood_type, quantity, requester_name, contact_info, urgency, hospital_name } = req.body;
+  const { blood_type, quantity, requester_name, contact_info, urgency, hospital_name, email } = req.body;
 
-  // Validation (ensure all required fields are provided)
-  if (!blood_type || !quantity || !requester_name || !contact_info || !hospital_name) {
+
+  if (!blood_type || !quantity || !requester_name || !contact_info || !hospital_name || !email) {
     return res.status(400).json({ message: 'All fields are required' });
   }
+  
 
-  // Create a new blood request instance
   const newRequest = new BloodRequest({
     blood_type,
     quantity,
     requester_name,
     contact_info,
+    email, // <-- Include email here
     urgency,
     hospital_name,
-  });
+  });  
 
   try {
     // Save the request to the database
