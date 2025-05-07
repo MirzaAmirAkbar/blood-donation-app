@@ -1,0 +1,53 @@
+.notifications-page {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 1rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .notifications-page h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    color: #B22222; /* Blood red title */
+  }
+  
+  .notification-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .notification-item {
+    background: #f9f9f9;
+    border-left: 6px solid #B22222; /* Blood red accent */
+    padding: 1rem 1.5rem;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    transition: background 0.2s;
+  }
+  
+  .notification-item:hover {
+    background: #fff3f3;
+  }
+  
+  .notification-item p {
+    margin: 0.3rem 0;
+  }
+  
+  .notification-item strong {
+    color: #444;
+  }
+  
+  .request-details {
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid #ccc;
+    font-size: 0.95rem;
+  }
+  
+  .request-details p {
+    margin: 0.25rem 0;
+  }
+  
