@@ -100,6 +100,24 @@ router.delete('/blood-request-delete/:id', async (req, res) => {
   }
 });
 
+// GET /api/bloodrequests/:id
+router.get('/bloodrequest/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    // Find the blood request by id
+    const bloodRequest = await BloodRequest.findById(id);
+
+    if (!bloodRequest) {
+      return res.status(404).json({ error: 'Blood request not found' });
+    }
+
+    res.json({ bloodRequest });
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch blood request', details: error.message });
+  }
+});
+
 
 
 

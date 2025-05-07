@@ -16,7 +16,7 @@ const ManageProfilePage = () => {
       setUser(storedUser);
       setContactInfo(storedUser.contact_info || '');
       setLocation(storedUser.location || '');
-      setPassword('');
+      setPassword(storedUser.password);
     }
   }, []);
 
@@ -26,7 +26,18 @@ const ManageProfilePage = () => {
       alert('User is not logged in or email is missing');
       return;
     }
-
+  
+    // Validation
+    if (!/^\d{11}$/.test(contactInfo)) {
+      alert('Contact info must be exactly 11 digits.');
+      return;
+    }
+  
+    if (password.length < 8) {
+      alert('Password must be at least 8 characters long.');
+      return;
+    }
+  
     try {
       const response = await fetch(`${process.env.REACT_APP_API_URL}/api/auth/update-profile`, {
         method: 'PUT',
@@ -38,9 +49,14 @@ const ManageProfilePage = () => {
           password: password,
         }),
       });
-
+  
       if (response.ok) {
-        const updatedUser = { ...storedUser, contact_info: contactInfo, location: location };
+        const updatedUser = {
+          ...storedUser,
+          contact_info: contactInfo,
+          location: location,
+          password: password, // optional: if you want to store updated password too
+        };
         localStorage.setItem('user', JSON.stringify(updatedUser));
         alert('Profile updated successfully!');
       } else {
@@ -51,6 +67,7 @@ const ManageProfilePage = () => {
       alert('An unexpected error occurred');
     }
   };
+  
 
   const handleBack = () => {
     navigate('/dashboard');
@@ -86,9 +103,9 @@ const ManageProfilePage = () => {
             onChange={(e) => setLocation(e.target.value)}
           />
 
-          <label>New Password</label>
+          <label>Password</label>
           <input
-            type="password"
+            type="text"
             placeholder="Enter new password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}

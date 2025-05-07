@@ -27,6 +27,14 @@ const RequestBlood = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+  
+    // Validate quantity
+    const quantity = parseFloat(formData.quantity);
+    if (isNaN(quantity) || quantity <= 0) {
+      alert('Quantity must be a positive number.');
+      return;
+    }
+  
     try {
       const response = await fetch(`${process.env.REACT_APP_API_URL}/api/auth/blood-request`, {
         method: 'POST',
@@ -35,7 +43,7 @@ const RequestBlood = () => {
         },
         body: JSON.stringify(formData),
       });
-
+  
       const data = await response.json();
       if (response.ok) {
         alert('Blood request created successfully!');
@@ -48,6 +56,7 @@ const RequestBlood = () => {
       alert('An error occurred while creating the request.');
     }
   };
+  
 
   return (
     <div className="request-blood-container">

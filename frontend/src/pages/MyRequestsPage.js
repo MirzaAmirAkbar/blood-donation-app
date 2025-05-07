@@ -43,6 +43,12 @@ const MyRequests = () => {
   };
 
   const handleUpdate = async (id) => {
+    const quantity = parseFloat(editedData[id]?.quantity);
+    if (isNaN(quantity) || quantity <= 0) {
+      alert('Quantity must be a positive number.');
+      return;
+    }
+  
     try {
       const response = await fetch(`${process.env.REACT_APP_API_URL}/api/blood-request/blood-request-update/${id}`, {
         method: 'PUT',
@@ -63,6 +69,7 @@ const MyRequests = () => {
       console.error('Error updating request:', error);
     }
   };
+  
 
   const handleEditChange = (id, field, value) => {
     setEditedData((prev) => ({

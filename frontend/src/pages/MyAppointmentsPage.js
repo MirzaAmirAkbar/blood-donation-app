@@ -9,17 +9,20 @@ const MyAppointmentsPage = () => {
   const navigate = useNavigate();
 
   const storedUser = JSON.parse(localStorage.getItem('user'));
-  const userEmail = storedUser?.email;
+  const userEmail = storedUser.email;
 
   useEffect(() => {
-    if (!userEmail) return;
+    if (!userEmail) {
+      alert('problem with email');
+      return;
+    }
 
     fetch(`/api/appointment/user/${userEmail}`)
       .then(res => res.json())
       .then(data => {
         setAppointments(data);
         data.forEach(appointment => {
-          fetch(`/api/bloodrequests/${appointment.bloodRequest}`)
+          fetch(`/api/blood-request/bloodrequest/${appointment.bloodRequest}`)
             .then(res => res.json())
             .then(bloodData => {
               setRequestDetails(prev => ({
@@ -40,7 +43,7 @@ const MyAppointmentsPage = () => {
     const updatedTime = editedTimes[id];
     if (!updatedTime) return;
 
-    fetch(`/api/appointments/update/${id}`, {
+    fetch(`/api/appointment/update/${id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ appointment_time: updatedTime }),
@@ -61,7 +64,7 @@ const MyAppointmentsPage = () => {
   const handleDelete = (id) => {
     if (!window.confirm('Are you sure you want to delete this appointment?')) return;
 
-    fetch(`/api/appointments/delete/${id}`, { method: 'DELETE' })
+    fetch(`/api/appointment/delete/${id}`, { method: 'DELETE' })
       .then(res => res.json())
       .then(() => {
         setAppointments(prev => prev.filter(app => app._id !== id));
