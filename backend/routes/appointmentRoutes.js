@@ -62,19 +62,20 @@ router.put('/update/:id', async (req, res) => {
   });
 
 
-// GET appointments by donor email
+// GET appointments by donor email and populate bloodRequest
 router.get('/user/:donorEmail', async (req, res) => {
   try {
     const donorEmail = req.params.donorEmail;
-    
-    // Find all appointments for the donor with the provided email
-    const appointments = await Appointment.find({ donor: donorEmail }).populate('bloodRequest');
-    
+
+    // Find all appointments for the donor and populate the bloodRequest data
+    const appointments = await Appointment.find({ donor: donorEmail })
+      .populate('bloodRequest');  // Populate the 'bloodRequest' reference
+
     if (appointments.length === 0) {
       return res.status(404).json({ message: 'No appointments found for this donor.' });
     }
-    
-    // Return the appointments as JSON
+
+    // Return the populated appointments as JSON
     res.status(200).json(appointments);
   } catch (error) {
     console.error(error);
