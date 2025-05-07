@@ -1,26 +1,53 @@
 const express = require('express');
 const Appointment = require('../models/Appointment'); // Adjust path as needed
 const BloodRequest = require('../models/BloodRequest'); // Adjust path as needed
+const Notification = require('../models/Notification');
 
 const router = express.Router();
 
 // POST /api/appointments
 router.post('/add', async (req, res) => {
-    try {
-      const { donorId, bloodRequestId, appointment_time } = req.body;
-  
-      const newAppointment = new Appointment({
-        donor: donorId,
-        bloodRequest: bloodRequestId,
-        appointment_time,
-      });
-  
-      await newAppointment.save();
-      res.status(201).json({ message: 'Appointment created successfully', appointment: newAppointment });
-    } catch (error) {
-      res.status(500).json({ error: 'Failed to create appointment', details: error.message });
+  try {
+    const { donorId, bloodRequestId, appointment_time } = req.body;
+
+    // Validate blood request
+    const bloodRequest = await BloodRequest.findById(bloodRequestId);
+    if (!bloodRequest) {
+      return res.status(404).json({ error: 'Blood request not found' });
     }
-  });
+
+    // Create appointment
+    const newAppointment = new Appointment({
+      donor: donorId,
+      bloodRequest: bloodRequestId,
+      appointment_time,
+    });
+
+    await newAppointment.save();
+
+    // Create notification
+    const notificationText = `A donation appointment is scheduled for ${new Date(appointment_time).toLocaleString()} for your request ID: ${bloodRequestId}`;
+
+    const newNotification = new Notification({
+      email: bloodRequest.email,
+      notification_time: new Date(),
+      text: notificationText,
+      appointment: newAppointment._id,
+      bloodRequest: bloodRequestId,
+    });
+
+    await newNotification.save();
+
+    res.status(201).json({
+      message: 'Appointment and notification created successfully',
+      appointment: newAppointment,
+      notification: newNotification
+    });
+  } catch (error) {
+    console.error('Error creating appointment or notification:', error);
+    res.status(500).json({ error: 'Failed to create appointment', details: error.message });
+  }
+});
 
   // DELETE /api/appointments/:id
 router.delete('/delete/:id', async (req, res) => {
