@@ -111,6 +111,26 @@ router.get('/user/:donorEmail', async (req, res) => {
 });
 
 
+// GET /api/notifications?email=user@example.com
+router.get('/notifications', async (req, res) => {
+  const { email } = req.query;
+
+  if (!email) {
+    return res.status(400).json({ error: 'Email is required' });
+  }
+
+  try {
+    const notifications = await Notification.find({ email })
+      .sort({ notification_time: -1 }) // newest first
+      .populate('appointment bloodRequest'); // optional: populate if needed
+
+    res.json(notifications);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch notifications', details: error.message });
+  }
+});
+
+
   
   
   module.exports = router;

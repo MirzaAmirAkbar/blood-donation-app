@@ -10,6 +10,7 @@ import RequestBloodPage from './pages/RequestBloodPage';
 import ViewBloodRequestsPage from './pages/ViewBloodRequestsPage';
 import MyRequestsPage from './pages/MyRequestsPage';
 import MyAppointmentsPage from './pages/MyAppointmentsPage';
+import NotificationsPage from './pages/NotificationsPage';
 
 
 const App = () => {
@@ -25,6 +26,7 @@ const App = () => {
         <Route path="/view-requests" element={<ViewBloodRequestsPage />} />
         <Route path="/my-requests" element={<MyRequestsPage />} />
         <Route path="/my-appointments" element={<MyAppointmentsPage />} />
+        <Route path="/notifications" element={<NotificationsPage />} />
         {/* You can add a Register page here */}
       </Routes>
     </Router>
