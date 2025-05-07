@@ -1,108 +1,54 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-//import '../styles/MyAppointmentsPage.css';
+import '../styles/MyAppointmentsPage.css'; // Make sure this is included
 
 const MyAppointmentsPage = () => {
   const [appointments, setAppointments] = useState([]);
-  const [requestDetails, setRequestDetails] = useState({});
-  const [editedTimes, setEditedTimes] = useState({});
   const navigate = useNavigate();
 
   const storedUser = JSON.parse(localStorage.getItem('user'));
-  const userEmail = storedUser.email;
+  const userEmail = storedUser?.email;
 
   useEffect(() => {
     if (!userEmail) {
-      alert('problem with email');
+      alert('Problem with email');
       return;
     }
 
-    fetch(`/api/appointment/user/${userEmail}`)
+    fetch(`${process.env.REACT_APP_API_URL}/api/appointment/user/${userEmail}`)
       .then(res => res.json())
-      .then(data => {
-        setAppointments(data);
-        data.forEach(appointment => {
-          fetch(`/api/blood-request/bloodrequest/${appointment.bloodRequest}`)
-            .then(res => res.json())
-            .then(bloodData => {
-              setRequestDetails(prev => ({
-                ...prev,
-                [appointment._id]: bloodData
-              }));
-            });
-        });
-      })
+      .then(data => setAppointments(data))
       .catch(err => console.error('Failed to load appointments:', err));
   }, [userEmail]);
 
-  const handleTimeChange = (id, value) => {
-    setEditedTimes(prev => ({ ...prev, [id]: value }));
-  };
-
-  const handleUpdate = (id) => {
-    const updatedTime = editedTimes[id];
-    if (!updatedTime) return;
-
-    fetch(`/api/appointment/update/${id}`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ appointment_time: updatedTime }),
-    })
-      .then(res => res.json())
-      .then(data => {
-        setAppointments(prev =>
-          prev.map(app => app._id === id ? { ...app, appointment_time: updatedTime } : app)
-        );
-        alert('Appointment updated successfully.');
-      })
-      .catch(err => {
-        console.error('Update failed:', err);
-        alert('Failed to update appointment.');
-      });
-  };
-
-  const handleDelete = (id) => {
-    if (!window.confirm('Are you sure you want to delete this appointment?')) return;
-
-    fetch(`/api/appointment/delete/${id}`, { method: 'DELETE' })
-      .then(res => res.json())
-      .then(() => {
-        setAppointments(prev => prev.filter(app => app._id !== id));
-        alert('Appointment deleted successfully.');
-      })
-      .catch(err => {
-        console.error('Delete failed:', err);
-        alert('Failed to delete appointment.');
-      });
-  };
-
   return (
-    <div className="dashboard-page">
-      <div className="dashboard-card">
-        <h1>My Appointments</h1>
+    <div className="appointments-container">
+      <div className="appointments-card">
+        <h1 className="appointments-title">My Appointments</h1>
+
         {appointments.length === 0 ? (
-          <p className="dashboard-subtitle">You have no appointments yet.</p>
+          <p className="appointments-empty">You have no appointments yet.</p>
         ) : (
-          appointments.map(app => {
-            const details = requestDetails[app._id];
-            return (
-              <div className="appointment-item" key={app._id}>
-                <h3>{details?.blood_type} - {details?.hospital_name}</h3>
-                <p><strong>Requester:</strong> {details?.requester_name}</p>
-                <p><strong>Urgency:</strong> {details?.urgency}</p>
-                <p><strong>Current Time:</strong> {(new Date(app.appointment_time), 'PPpp')}</p>
-                <input
-                  type="datetime-local"
-                  value={editedTimes[app._id] || ''}
-                  onChange={(e) => handleTimeChange(app._id, e.target.value)}
-                />
-                <div className="dashboard-options">
-                  <button onClick={() => handleUpdate(app._id)}>Update</button>
-                  <button onClick={() => handleDelete(app._id)}>Delete</button>
+          <div className="appointments-list">
+            {appointments.map(app => {
+              const bloodRequest = app.bloodRequest;
+
+              return (
+                <div className="appointment-card" key={app._id}>
+                  <div className="appointment-header">
+                    <span className="blood-tag">{bloodRequest?.blood_type}</span>
+                    <span className="hospital-name">{bloodRequest?.hospital_name}</span>
+                  </div>
+                  <div className="appointment-details">
+                    <p><strong>Requester:</strong> {bloodRequest?.requester_name}</p>
+                    <p><strong>Contact:</strong> {bloodRequest?.contact_info}</p>
+                    <p><strong>Urgency:</strong> {bloodRequest?.urgency}</p>
+                    <p><strong>Date/Time:</strong> {(new Date(app.appointment_time)).toLocaleString()}</p>
+                  </div>
                 </div>
-              </div>
-            );
-          })
+              );
+            })}
+          </div>
         )}
       </div>
     </div>

@@ -17,6 +17,7 @@ const DashboardPage = () => {
           <button onClick={() => navigate('/my-requests')}>My Requests</button>
           <button onClick={() => navigate('/view-requests')}>View Blood Requests</button>
           <button onClick={() => navigate('/my-appointments')}>My Appointments</button>
+          <button onClick={() => navigate('/notifications')}>Notifications</button>
         </div>
       </div>
     </div>
