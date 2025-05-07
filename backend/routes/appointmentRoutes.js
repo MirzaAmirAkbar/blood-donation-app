@@ -59,6 +59,24 @@ router.put('/update/:id', async (req, res) => {
       res.status(500).json({ error: 'Failed to update appointment', details: error.message });
     }
   });
+
+  // GET /api/appointments/donor/:donorId
+router.get('/user/:donorId', async (req, res) => {
+  try {
+    const { donorId } = req.params;
+    
+    // Find all appointments for the given donorId
+    const appointments = await Appointment.find({ donor: donorId });
+
+    if (!appointments || appointments.length === 0) {
+      return res.status(404).json({ error: 'No appointments found for this donor' });
+    }
+
+    res.json({ appointments });
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch appointments', details: error.message });
+  }
+});
   
   
   module.exports = router;
