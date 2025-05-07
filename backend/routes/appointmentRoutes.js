@@ -1,5 +1,6 @@
 const express = require('express');
 const Appointment = require('../models/Appointment'); // Adjust path as needed
+const BloodRequest = require('../models/BloodRequest'); // Adjust path as needed
 
 const router = express.Router();
 
@@ -63,12 +64,7 @@ router.put('/update/:id', async (req, res) => {
 // In the backend API to get all appointments for a user, populate the bloodRequest field
 router.get('/appointment/user/:email', async (req, res) => {
   try {
-    const user = await User.findOne({ email: req.params.email });
-    if (!user) {
-      return res.status(404).json({ message: 'User not found' });
-    }
-
-    const appointments = await Appointment.find({ donor: user._id })
+    const appointments = await Appointment.find({ donor: req.params.email })
       .populate('bloodRequest'); // Populating the bloodRequest field
 
     return res.status(200).json(appointments);
