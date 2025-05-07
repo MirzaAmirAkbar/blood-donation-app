@@ -60,23 +60,24 @@ router.put('/update/:id', async (req, res) => {
     }
   });
 
-  // GET /api/appointments/donor/:donorId
-router.get('/user/:donorId', async (req, res) => {
+// In the backend API to get all appointments for a user, populate the bloodRequest field
+router.get('/appointment/user/:email', async (req, res) => {
   try {
-    const { donorId } = req.params;
-    
-    // Find all appointments for the given donorId
-    const appointments = await Appointment.find({ donor: donorId });
-
-    if (!appointments || appointments.length === 0) {
-      return res.status(404).json({ error: 'No appointments found for this donor' });
+    const user = await User.findOne({ email: req.params.email });
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
     }
 
-    res.json({ appointments });
-  } catch (error) {
-    res.status(500).json({ error: 'Failed to fetch appointments', details: error.message });
+    const appointments = await Appointment.find({ donor: user._id })
+      .populate('bloodRequest'); // Populating the bloodRequest field
+
+    return res.status(200).json(appointments);
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ message: 'Server error' });
   }
 });
+
   
   
   module.exports = router;
