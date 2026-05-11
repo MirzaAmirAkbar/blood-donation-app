@@ -6,14 +6,11 @@ A full-stack MERN application designed to manage blood donation requests, user a
 
 **Frontend:**
 - React (v19)
-- React Router DOM (Routing)
-- Testing Library & Jest (Unit Testing)
 
 **Backend:**
 - Node.js
 - Express.js
-- MongoDB & Mongoose (Database & ODM)
-- CORS & dotenv (Environment Management)
+- MongoDB Atlas
 
 ## ✨ Features
 
@@ -35,3 +32,45 @@ Make sure you have the following installed on your local machine:
 ```bash
 git clone <repository-url>
 cd <project-directory>
+```
+
+### 2. Backend Setup
+
+Navigate to the backend directory, install dependencies, and configure your environment variables.
+
+```bash
+cd backend
+npm install
+```
+
+Create a .env file in the backend directory and add the following variables:
+
+```bash
+PORT=5000
+MONGO_URI=your_mongodb_connection_string
+```
+
+Start the development server:
+
+```bash
+# Runs the server with nodemon for auto-reloading
+npm run dev
+```
+
+### 2. Frontend Setup
+
+Open a new terminal, navigate to the frontend directory, and install dependencies.
+
+```bash
+cd frontend
+npm install
+```
+
+Start the React development server:
+
+```bash
+npm start
+```
+
+The frontend will run on http://localhost:3000 and communicate with the backend running on http://localhost:5000.
+
